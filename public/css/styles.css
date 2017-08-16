@@ -45,3 +45,7 @@ button {
     border: 1px solid darkred;
     border-radius: 4px;
 }
+
+button:disabled {
+    background-color: darkgrey;    
+}

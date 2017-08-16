@@ -1,28 +1,40 @@
-(function() {
-  getTheaters = () => {
-    $("#theaters").html("");
-    $("#loading").show();
-    const url = "http://mdudetm.com/moviepass/api/theaters/";
-    const zip = $("#zip").val();
-    // $.ajax({
-    //   url: url + zip,
-    //   type: "GET",
-    //   dataType: "json",
-    //   success: function(data) {
-    //     console.log(data);
-    //   }
-    // });
-    $.get(url + zip, data => {
-      renderTheaters(JSON.parse(data).theaters);
-    });
+$(function() {
+  const loading = $('#loading'),
+    theaters = $('#theaters'),
+    btn = $('#go-button'),
+    zip = $('#zip');
+
+  let requesting = false;
+
+  function getTheaters() {
+    let zipcode = zip.val();
+    if(!zipcode.length || this.disabled) { return; }
+
+    this.disabled = true;
+
+    theaters.html("");
+    loading.show();
+
+    $.get('http://mdudetm.com/moviepass/api/theaters/' + zipcode, renderTheaters).fail(renderError);
   };
 
-  renderTheaters = theaters => {
-    let fullMarkup = ``;
-    if (theaters.length == 0) {
-      fullMarkup = `No results found`;
-    } else {
-      theaters.forEach(theater => {
+  const renderError = (res) => {
+    btn.prop('disabled', false);
+    loading.hide();
+    theaters.html(res.responseText + ' Please try again.');
+  };
+
+  const renderTheaters = (data) => {
+    let theaterData = [];
+    try {
+      theaterData = JSON.parse(data).theaters;
+    } catch (e) {
+      console.error(e);
+    }
+
+    let fullMarkup = 'No results found';
+    if (theaterData.length !== 0) {
+      theaterData.forEach(theater => {
         let markup = `
         <div class="theater">
             <h3>${theater.name}</h3>
@@ -39,15 +51,16 @@
       });
     }
 
-    $("#theaters").html(fullMarkup);
-    $("#loading").hide();
+    theaters.html(fullMarkup);
+    loading.hide();
+    btn.prop('disabled', false);
   };
 
-  $("#loading").hide();
-  $("#go-button").click(getTheaters);
-  $("#zip").keypress(function(e) {
-    if (e.which == 13) {
-      getTheaters();
+  loading.hide();
+  btn.click(getTheaters);
+  zip.keypress(function(e) {
+    if (e.which === 13) {
+      getTheaters.call(btn[0]);
     }
   });
-})();
+})
