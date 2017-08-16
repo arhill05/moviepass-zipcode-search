@@ -1,17 +1,29 @@
 (function() {
   getTheaters = () => {
-    const url = "https://www.moviepass.com/theaters/zip/";
+    $("#theaters").html("");
+    $("#loading").show();
+    const url = "http://localhost:3001/api/theaters/";
     const zip = $("#zip").val();
+    // $.ajax({
+    //   url: url + zip,
+    //   type: "GET",
+    //   dataType: "json",
+    //   success: function(data) {
+    //     console.log(data);
+    //   }
+    // });
     $.get(url + zip, data => {
-      renderTheaters(data.theaters);
+      renderTheaters(JSON.parse(data).theaters);
     });
   };
 
   renderTheaters = theaters => {
-    $("#theaters").html("");
     let fullMarkup = ``;
-    theaters.forEach(theater => {
-      let markup = `
+    if (theaters.length == 0) {
+      fullMarkup = `No results found`;
+    } else {
+      theaters.forEach(theater => {
+        let markup = `
         <div class="theater">
             <h3>${theater.name}</h3>
             <span class="theater-chain">${theater.theaterChainName}</span>
@@ -22,12 +34,15 @@
         </div>
         `;
 
-      fullMarkup += markup;
-    });
+        fullMarkup += markup;
+      });
+    }
 
     $("#theaters").html(fullMarkup);
+    $("#loading").hide();
   };
 
+  $("#loading").hide();
   $("#go-button").click(getTheaters);
   $("#zip").keypress(function(e) {
     if (e.which == 13) {
