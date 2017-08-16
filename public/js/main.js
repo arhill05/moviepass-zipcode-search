@@ -2,18 +2,13 @@
   getTheaters = () => {
     $("#theaters").html("");
     $("#loading").show();
-    const url = "http://mdudetm.com/moviepass/api/theaters/";
+    const url = "http://localhost:3001/api/theaters/";
     const zip = $("#zip").val();
-    // $.ajax({
-    //   url: url + zip,
-    //   type: "GET",
-    //   dataType: "json",
-    //   success: function(data) {
-    //     console.log(data);
-    //   }
-    // });
     $.get(url + zip, data => {
       renderTheaters(JSON.parse(data).theaters);
+    }).fail(function(){
+      $("loading").hide();
+      $("#theaters").html("Something went wrong :( <br/> Try it again soon.");
     });
   };
 
