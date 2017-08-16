@@ -1,0 +1,31 @@
+body {
+    padding: 8px;
+    color: #222222;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin: 8px 0;
+}
+
+.theater {
+    padding: 8px;
+    margin: 16px 8px 16px 0;
+    width: 30%;
+    display: inline-block;
+    border: 1px solid #cfcfcf;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2);
+}
+
+.theater h3 {
+    margin: 6px 0;
+}
+
+.theater p {
+    margin: 4px 0;
+}
+
+.theater .theater-chain {
+    float: right;
+}
