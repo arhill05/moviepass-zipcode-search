@@ -5,6 +5,10 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+form {
+    float: right;
+}
+
 label {
     font-weight: bold;
     display: block;

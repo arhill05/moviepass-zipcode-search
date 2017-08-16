@@ -2,7 +2,7 @@
   getTheaters = () => {
     $("#theaters").html("");
     $("#loading").show();
-    const url = "http://localhost:3001/api/theaters/";
+    const url = "http://mdudetm.com/moviepass/api/theaters/";
     const zip = $("#zip").val();
     // $.ajax({
     //   url: url + zip,
@@ -30,6 +30,7 @@
             <div class="theater-info">
                 <p>${theater.address}</p>
                 <p>${theater.city}, ${theater.state} ${theater.zip}</p>
+                <p>Distance: ${theater.distance} mi</p>
             </div>
         </div>
         `;
