@@ -14,7 +14,7 @@
 
   renderTheaters = theaters => {
     let fullMarkup = ``;
-    if (theaters.length == 0) {
+    if (!theaters || theaters.length == 0) {
       fullMarkup = `No results found`;
     } else {
       theaters.forEach(theater => {
