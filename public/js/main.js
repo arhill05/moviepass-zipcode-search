@@ -2,7 +2,7 @@
   getTheaters = () => {
     $("#theaters").html("");
     $("#loading").show();
-    const url = "http://localhost:3001/api/theaters/";
+    const url = "http://mdudetm.com/moviepass/api/theaters/";
     const zip = $("#zip").val();
     $.get(url + zip, data => {
       renderTheaters(JSON.parse(data).theaters);
