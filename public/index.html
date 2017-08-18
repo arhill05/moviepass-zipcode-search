@@ -9,24 +9,41 @@
 </head>
 
 <body>
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <p>Donate if you wish :)</p>
-        <input type="hidden" name="cmd" value="_donations">
-        <input type="hidden" name="business" value="mdude2314@gmail.com">
-        <input type="hidden" name="lc" value="BM">
-        <input type="hidden" name="item_name" value="Beer Money">
-        <input type="hidden" name="no_note" value="0">
-        <input type="hidden" name="currency_code" value="USD">
-        <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-    </form>
-    <h1>MoviePass Zip Code Search</h1>
-    <label for="zip">Zip Code</label>
-    <input type="text" id="zip" />
-    <button id="go-button">Search</button>
-    <h2 id="loading">Loading . . .</h2>
-    <div id="theaters"></div>
+    <div class="header">
+        <h1>MoviePass Zip Code Search</h1>
+    </div>
+    <div class="content">
+        <label for="zip">Zip Code</label>
+        <input type="text" id="zip" />
+        <button id="go-button">Search</button>
+        <div id="floatingCirclesG">
+            <div class="f_circleG" id="frotateG_01"></div>
+            <div class="f_circleG" id="frotateG_02"></div>
+            <div class="f_circleG" id="frotateG_03"></div>
+            <div class="f_circleG" id="frotateG_04"></div>
+            <div class="f_circleG" id="frotateG_05"></div>
+            <div class="f_circleG" id="frotateG_06"></div>
+            <div class="f_circleG" id="frotateG_07"></div>
+            <div class="f_circleG" id="frotateG_08"></div>
+        </div>
+        <div id="theaters"></div>
+    </div>
+    <div class="footer">
+        <span class="disclaimer">This site is in no way affiliated with <a href="https://www.moviepass.com">MoviePass</a>. The data is not guaranteed
+        to be 100% correct. Please check with MoviePass support or your local theater to verify this information. Site by <a href="https://www.reddit.com/u/mdude2312">/u/mdude2312</a></span>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_donations">
+            <input type="hidden" name="business" value="mdude2314@gmail.com">
+            <input type="hidden" name="lc" value="BM">
+            <input type="hidden" name="item_name" value="Beer Money">
+            <input type="hidden" name="no_note" value="0">
+            <input type="hidden" name="currency_code" value="USD">
+            <input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_SM.gif:NonHostedGuest">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+
+    </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="main.js"></script>
 </body>
