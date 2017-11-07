@@ -5,7 +5,7 @@ const express = require("express"),
   app = express(),
   router = express.Router();
 
-const redis = require('redis');
+//const redis = require('redis');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

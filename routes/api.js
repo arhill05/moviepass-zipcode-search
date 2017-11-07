@@ -1,41 +1,39 @@
 const express = require("express");
 const request = require("request");
 const router = express.Router();
-const redis = require('redis');
-const client = redis.createClient();
-// const mongoose = require('mongoose');
-// const Theater = mongoose.model('Theater');
 
 const url = "https://www.moviepass.com/theaters/zip/";
 
 getTheaters = (req, res) => {
-  client
-    .get(req.params.zip, function (err, data) {
-      if (err) 
-        throw err;
-      if (data != null) 
-        res.send(data);
-      else {
-        request(url + req.params.zip, (error, response, body) => {
-          if (!error && response.statusCode == 200) {
-            client.set(req.params.zip, body);
-            res.send(body);
-          } else if (!error && response.statusCode == 503) {
-            res.status(503);
-            res.send('Service currently unavailable');
-          } else {
-            res.status(500);
-            res.send('Something went wrong :(');
-          }
-        })
-      };
-    })
-
-  // const theaters = await Theater.find({zip: req.params.zip})
-  // res.send(theaters);
+  request(url + req.params.zip, (error, response, body) => {
+    if (!error && response.statusCode == 200) {
+      res.send(body);
+    } else if (!error && response.statusCode == 503) {
+      res.status(503);
+      console.error('Moviepass returned a 503 for zipcode ' + req.params.zip);
+      res.send('Service currently unavailable');
+    } else {
+      res.status(500);
+      console.error(error)
+      res.send('Something went wrong :(');
+    };
+  })
 };
 
+getNews = (req, res) => {
+  const options = {
+    url: "https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=moviepass&mkt=en-us",
+    headers: {
+      'Ocp-Apim-Subscription-Key': '41f3f2b9f74d4e76b7af19fcaaa63724'
+    }
+  };
+  request(options, (err, response, body) => {
+    res.send(body);
+  });
+}
+
 router.get("/theaters/:zip", getTheaters);
+router.get("/news", getNews);
 router.get("/ping", (req, res) => {
   res.send("pong");
 });

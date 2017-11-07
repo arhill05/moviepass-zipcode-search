@@ -9,9 +9,9 @@
 </head>
 
 <body>
-    <div class="header">
-        <h1>MoviePass Zip Code Search</h1>
-    </div>
+    <header>
+        <h1><a href=".">MoviePass Zip Code Search</a></h1>
+    </header>
     <div class="content">
         <label for="zip">Zip Code</label>
         <input type="text" id="zip" />
@@ -26,11 +26,29 @@
             <div class="f_circleG" id="frotateG_07"></div>
             <div class="f_circleG" id="frotateG_08"></div>
         </div>
+        <div id="info">
+            <h3>What is MoviePass?</h3>
+            <p>MoviePass is a subscription service based out of the United States that allows subscribers to pay a flat monthly
+                fee to see as many movies as they'd like in a month -- up to one a day.
+            </p>
+            <h3>How much does it cost?</h3>
+            <p>MoviePass currently charges $9.99/mo for it's service.</p>
+            <h3>How does it work?</h3>
+            <p>MoviePass sends you something similar to a debit card. You download their app, check in at the theater you wish
+                to purchase the ticket from, and then the card is loaded with the funds needed to purchase tickets.</p>
+        </div>
+        <div id="news">
+            <h2>News about MoviePass</h2>
+            <div id="news-content"></div>
+        </div>
         <div id="theaters"></div>
     </div>
-    <div class="footer">
-        <span class="disclaimer">This site is in no way affiliated with <a href="https://www.moviepass.com">MoviePass</a>. The data is not guaranteed
-        to be 100% correct. Please check with MoviePass support or your local theater to verify this information. Site by <a href="https://www.reddit.com/u/mdude2312">/u/mdude2312</a></span>
+    <footer>
+        <span class="disclaimer">This site is in no way affiliated with
+            <a href="https://www.moviepass.com">MoviePass</a>. The data is not guaranteed to be 100% correct. Please check with MoviePass support or your local
+            theater to verify this information. Site by
+            <a href="https://www.reddit.com/u/mdude2312">/u/mdude2312</a>
+        </span>
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
             <input type="hidden" name="cmd" value="_donations">
             <input type="hidden" name="business" value="mdude2314@gmail.com">
@@ -43,7 +61,7 @@
             <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
         </form>
 
-    </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="main.js"></script>
 </body>

@@ -1,0 +1,30 @@
+server {
+	root /srv/www/andrewhill.io
+	listen 80 default_server;
+	access_log  logs/access.log;
+	index index.html index.htm;
+	server_name andrewhill.io www.andrewhill.io;
+
+	location / {
+		try_files index index.html index.htm;
+	}
+
+	location /moviepass/ {
+		proxy_pass http://127.0.0.1:3001/;
+        proxy_redirect http://127.0.0.1:3001 /moviepass;
+		port_in_redirect off;
+	}
+}
+
+server {
+	root /var/www/dev.andrewhill.io
+	listen 80;
+	root /srv/www/dev.andrewhill.io/;
+	server_name dev.andrewhill.io www.dev.andrewhill.io;
+ 	location / {
+		try_files $uri $uri/ =404;
+	}
+}
+
+
+

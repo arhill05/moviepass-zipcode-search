@@ -1,14 +1,16 @@
 (function () {
   getTheaters = () => {
     $("#theaters").html("");
+    $("#news").hide();
+    $("#info").hide();
     $("#floatingCirclesG").show();
-    const url = "http://localhost:3001/api/theaters/";
+    const url = "https://localhost:3001/api/theaters/";
     const zip = $("#zip").val();
     $.get(url + zip, data => {
-      renderTheaters(JSON.parse(data).theaters);
-    })
+        renderTheaters(JSON.parse(data).theaters);
+      })
       .fail(function () {
-        $("floatingCirclesG").hide();
+        $("#floatingCirclesG").hide();
         $("#theaters").html("Something went wrong :( <br/> Try it again soon.");
       });
   };
@@ -34,7 +36,7 @@
                 <p class="theater-ticket-type">Ticket Type: ${theater.ticketType}</p>
                 <a class="theater-directions-link" href="${theaterMapUrl}"><button>Directions</button></a>
             </div>
-           
+
         </div>
         `;
 
@@ -45,6 +47,20 @@
     $("#theaters").html(fullMarkup);
     $("#floatingCirclesG").hide();
   };
+
+  $.get("https://localhost:3001/api/news", data => {
+    const newsPosts = JSON.parse(data).value;
+    let markUp = ``;
+    newsPosts.forEach(post => {
+      markUp += `
+      <div class="news-post">
+        <h2>${post.name}</h2>
+        <p>${post.description}</p>
+        <a href="${post.url}">Read more</a>
+      </div>`
+    })
+    $("#news-content").html(markUp);
+  });
 
   $("#floatingCirclesG").hide();
   $("#go-button").click(getTheaters);
