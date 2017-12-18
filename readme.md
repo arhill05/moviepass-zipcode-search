@@ -26,3 +26,9 @@ If there are any errors, an error message is displayed instead of the list of th
 
 The NodeJS server is needed because of CORS which means that cross-domain requests from a browser cannot be made to servers that do not allow them -- MoviePass's server(s) is one of them. NodeJS lives on the same domain as the client-side logic which allows it to make a request out to MoviePass's API.
 
+## Usage
+Clone repo
+`cd moviepass-zipcode-search`
+`npm install`
+`redis-server`
+In a separate tab/window, run `node start.js`
